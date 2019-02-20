@@ -16,12 +16,12 @@ if __name__ == '__main__':
 		lengths_ref = []  # type: List[int]
 		lengths_hyp = []  # type: List[int]
 		for ref_line, hyp_line in zip(ref, hyp):
-			lengths_ref.append(len(ref_line))
-			lengths_hyp.append(len(hyp_line))
+			lengths_ref.append(len(ref_line.split()))
+			lengths_hyp.append(len(hyp_line.split()))
 	
-	ratios = [hyp_len / ref_len for hyp_len, ref_len in zip(lengths_ref, lengths_hyp)]
+	ratios = [float(hyp_len) / ref_len for hyp_len, ref_len in zip(lengths_hyp, lengths_ref)]
 	
-	avg_length_ratio = sum(ratios) / len(ratios)
+	avg_length_ratio = sum(ratios) / float(len(ratios))
 	min_length_ratio = min(ratios)
 	max_length_ratio = max(ratios)
 	
